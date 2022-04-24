@@ -12,6 +12,7 @@
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -55,7 +56,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -70,21 +71,47 @@
 
         <div class="d-flex justify-content-between align-items-center">
           <h3>Explore <span style="color:rgb(113, 230, 238) ;"><strong>Opportunities</strong></span></h3>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li></li>
-          </ol>
+     
+         <ol>
+           <li><h4><a class="active" href="#" ><i class="fa fa-home"></i> Profile</a></h4> </li>
+           <li><h5><a class="active" href="#">Logout</a></h5></li> 
+            
+         </ol>
+             
+            
+           
+           
+        
         </div>
 
       </div>
     </section><!-- End Breadcrumbs Section -->
-
-    <section class="inner-page">
-  
+   
+    <section class="inner-page" style="padding: 20px ;">
+     
+      
     <div class="container-fluid">
+      <!-- <div class="prof">
+        <a href="/index.html">
+          <div>
+            Profile
+          </div>
+        </a>
+      </div> -->
+      <div class = "searching">
+        <form action="/books/searchBook" style="margin-right: 5vw;">
+          <input type="search" class="search__input"  placeholder="Search..." name="search">
+           <!-- <i class="bi bi-search"></i> -->
+         
+      </form>
+    </div>
       <div class="row">
-            <div class="container col-lg-4 col-md-6 col-sm-12 col-xs-12">
+          
+        
+        <div class="container col-lg-4 col-md-6 col-sm-12 col-xs-12">
+              
             <div class="post">
+              <a href="index.html" style="color: black;">   
                 <div class="header_post">
                     <img src="https://images.pexels.com/photos/2529973/pexels-photo-2529973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
                 </div>
@@ -122,7 +149,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+              </a> 
+              </div>
 
             <div class="container col-lg-4 col-md-6 col-sm-12 col-xs-12">
               <div class="post">

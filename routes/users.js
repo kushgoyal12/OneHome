@@ -22,15 +22,17 @@ router.post('/:entity/register', catchAsync(async (req, res, next) => {
         if(entity === "volunteer") {
             const volunteer = new Volunteer();
             volunteer.author = req.user._id;
+            volunteer.username = req.body.username;
             volunteer.save();
             req.flash('success', 'Welcome to One Home!');
             res.redirect(`/home`);
         } else {
             const ngo = new Ngo();
             ngo.author = req.user._id;
+            ngo.username = req.body.username;
             ngo.save();
             req.flash('success', 'Welcome to One Home!');
-            res.render('ngos/home');
+            res.redirect(`/home`);
         }
     })
     } catch(e) {
@@ -45,11 +47,36 @@ router.get('/login', (req, res) => {
 
 router.post('/:entity/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     req.flash('success', 'Welcome Back!');
-    const user = req.body.username;
-    console.log(user);
-    const redirectUrl = req.session.returnTo || '/volunteer';
-    delete req.session.returnTo;
-    res.redirect(redirectUrl);
+    const { entity } = req.params;
+    let url = '';
+    const username = req.body.username;
+    if(entity === "volunteer") {
+         Volunteer.find({"username" : username}, (err, blog) => {
+            if (err || blog.length === 0) {
+                url = `/${entity}/login`;
+            } else {
+                url = '/volunteer';
+            }
+        
+            const redirectUrl = req.session.returnTo || url;
+            console.log(redirectUrl);
+            delete req.session.returnTo;
+            res.redirect(redirectUrl);
+        });
+    } else {
+        Ngo.find({"username" : username}, (err, blog) => {  
+            if (err || blog.length === 0) {
+                url = `/${entity}/login`;
+            } else {
+                url = '/ngo';
+            }
+            const redirectUrl = req.session.returnTo || url;
+            console.log(redirectUrl);v
+            delete req.session.returnTo;
+            res.redirect(redirectUrl);
+        
+        });
+    }
 })
 
 router.get('/logout', (req, res) => {

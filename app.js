@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 app.use('/', userRoutes);
 app.use('/volunteer', volunteerRoutes);
-// app.use('/campgrounds', campgroundRoutes);
+app.use('/ngo', ngoRoutes);
 
 app.get('/home', (req, res) => {
     res.render('home')

@@ -24,7 +24,7 @@ router.post('/:entity/register', catchAsync(async (req, res, next) => {
             volunteer.author = req.user._id;
             volunteer.save();
             req.flash('success', 'Welcome to One Home!');
-            res.redirect(`/volunteer`);
+            res.redirect(`/home`);
         } else {
             const ngo = new Ngo();
             ngo.author = req.user._id;

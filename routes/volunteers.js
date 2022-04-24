@@ -12,6 +12,10 @@ router.get('/login', (req, res) => {
     res.render('volunteers/login')
 })
 
+router.get('/register', (req, res) => {
+    res.render('volunteers/register')
+})
+
 router.get('/', catchAsync(async (req, res) => {
     res.render('volunteers/home')
 }))

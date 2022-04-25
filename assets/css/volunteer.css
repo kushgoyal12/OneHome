@@ -341,10 +341,19 @@
 .searching{
   margin-bottom: 20px;
   margin-top: 20px;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  justify-content: flex-end;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
  
 }
+
 .search__input {
   font-family: inherit;
   font-size: inherit;

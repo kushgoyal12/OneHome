@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { isLoggedIn } = require('../middleware');
 
 const catchAsync = require('../utilities/catchAsync');
 const Ngo = require("../models/ngo")
@@ -16,7 +17,7 @@ router.get('/register', (req, res) => {
     res.render('ngos/register')
 })
 
-router.get('/', catchAsync(async (req, res) => {
+router.get('/', isLoggedIn, catchAsync(async (req, res) => {
     res.render('ngos/home')
 }))
 

@@ -11,10 +11,9 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/:entity/register', catchAsync(async (req, res, next) => {
+    const { entity } = req.params;
     try {
     const { email, username, password } = req.body;
-    const { entity } = req.params;
-    // console.log(entity);
     const user = new User({ email, username });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, err => {
@@ -23,21 +22,26 @@ router.post('/:entity/register', catchAsync(async (req, res, next) => {
             const volunteer = new Volunteer();
             volunteer.author = req.user._id;
             volunteer.username = req.body.username;
+            volunteer.fname = req.body.fname;
+            volunteer.lname = req.body.lname;
+            volunteer.email = req.body.email;
             volunteer.save();
             req.flash('success', 'Welcome to One Home!');
-            res.redirect(`/home`);
+            res.redirect(`/${entity}`);
         } else {
             const ngo = new Ngo();
             ngo.author = req.user._id;
             ngo.username = req.body.username;
+            ngo.email = req.body.email;
+            ngo.ngo_name = req.body.ngo_name;
             ngo.save();
             req.flash('success', 'Welcome to One Home!');
-            res.redirect(`/home`);
+            res.redirect(`/${entity}`);
         }
     })
     } catch(e) {
         req.flash('error', e.message);
-        res.redirect('/register');
+        res.redirect(`/${entity}/register`);
     }
 }))
 
@@ -59,7 +63,6 @@ router.post('/:entity/login', passport.authenticate('local', { failureFlash: tru
             }
         
             const redirectUrl = req.session.returnTo || url;
-            console.log(redirectUrl);
             delete req.session.returnTo;
             res.redirect(redirectUrl);
         });
@@ -71,7 +74,6 @@ router.post('/:entity/login', passport.authenticate('local', { failureFlash: tru
                 url = '/ngo';
             }
             const redirectUrl = req.session.returnTo || url;
-            console.log(redirectUrl);v
             delete req.session.returnTo;
             res.redirect(redirectUrl);
         

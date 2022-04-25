@@ -800,6 +800,9 @@ section {
 }
 
 .inner{
+  font-size: 28px;
+  font-weight: 700;
+  font-family: Poppins, sans-serif;
   padding:  0 10px 0 10px;
   min-height: 58vh ;
   display: -webkit-flexbox;

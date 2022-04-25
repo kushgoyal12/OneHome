@@ -350,20 +350,19 @@
   font-size: inherit;
   color: inherit;
   background-color: white;
-  /* border: none; */
   border-color: black;
   padding: .7rem 2rem;
   border-radius: 100px;
   width: 90%;
-  /* -webkit-transition: all .2s; */
-  /* transition: all .2s; */
+  -webkit-transition: all .2s;
+  transition: all .2s;
   margin-right: -3.25rem;
 
 }
 
 .search__input:focus {
   outline: none;
-  width: 150%;
+  width: 120%;
   background-color: white;
 }
 
@@ -415,3 +414,17 @@
 
 }
 
+.filter {
+  background-color: white; /* Green */
+  border: 10px solid line;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.my:hover{
+   background-color: aqua;
+}

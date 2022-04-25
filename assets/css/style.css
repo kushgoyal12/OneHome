@@ -800,8 +800,35 @@ section {
 }
 
 .inner{
-  /* min-height: 80vh ; */
-  display: flex;
+  padding:  0 10px 0 10px;
+  min-height: 58vh ;
+  display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.inner_1{
+
+  display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
 }
 
 .more-services.active{
@@ -965,6 +992,17 @@ background-image: url("assets/img/info-box.jpg");
 /*--------------------------------------------------------------
 # Our Portfolio
 --------------------------------------------------------------*/
+
+.portfolio .btn {
+  border-radius: 50px;
+  padding: 4px 30px 6px 30px;
+  border: 2px solid #1bbca3;
+}
+.portfolio .btn:hover {
+  color: #fff;
+  background: #1bbca3;
+}
+
 .portfolio .portfolio-item {
   margin-bottom: 30px;
 }

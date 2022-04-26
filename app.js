@@ -14,6 +14,7 @@ const User = require('./models/user');
 const userRoutes = require('./routes/users');
 const volunteerRoutes = require('./routes/volunteers');
 const ngoRoutes = require('./routes/ngos');
+const opportunityRoutes = require('./routes/opportunities');
 
 mongoose.connect('mongodb://localhost:27017/one-home', {
     useNewUrlParser: true, 
@@ -68,6 +69,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes);
 app.use('/volunteer', volunteerRoutes);
 app.use('/ngo', ngoRoutes);
+app.use('/opportunity', opportunityRoutes);
 
 app.get('/home', (req, res) => {
     res.render('home')

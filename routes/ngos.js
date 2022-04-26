@@ -37,5 +37,20 @@ router.put('/', isLoggedIn, catchAsync(async(req, res) => {
     res.redirect('/ngo');
 }))
 
+router.get('/opportunity', isLoggedIn, catchAsync(async(req, res) => {
+    const id = req.user._id;
+    let n = await Ngo.find({"author" : id});
+    n = n[0];
+    const ngoId = n._id;
+    // const ngo = await Ngo.findById(ngoId);
+    // console.log(ngo);
+    const ngo = await Ngo.findById(ngoId).populate('opportunities');
+    res.render('ngos/opportunity', { ngo });
+}))
+
+router.get('/opportunity/add', isLoggedIn, catchAsync(async(req, res) => {
+    res.render('ngos/addOpportunity');
+}))
+
 
 module.exports = router;

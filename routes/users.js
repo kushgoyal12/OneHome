@@ -49,9 +49,41 @@ router.get('/login', (req, res) => {
     res.render('users/login');
 })
 
-router.post('/:entity/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
+router.post('/volunteer/login', passport.authenticate('local', { failureFlash: true, failureRedirect: `/volunteer/login` }), (req, res) => {
     req.flash('success', 'Welcome Back!');
-    const { entity } = req.params;
+    let url = '';
+    const entity = "volunteer";
+    const username = req.body.username;
+    if(entity === "volunteer") {
+         Volunteer.find({"username" : username}, (err, blog) => {
+            if (err || blog.length === 0) {
+                url = `/${entity}/login`;
+            } else {
+                url = '/volunteer';
+            }
+        
+            const redirectUrl = req.session.returnTo || url;
+            delete req.session.returnTo;
+            res.redirect(redirectUrl);
+        });
+    } else {
+        Ngo.find({"username" : username}, (err, blog) => {  
+            if (err || blog.length === 0) {
+                url = `/${entity}/login`;
+            } else {
+                url = '/ngo';
+            }
+            const redirectUrl = req.session.returnTo || url;
+            delete req.session.returnTo;
+            res.redirect(redirectUrl);
+        
+        });
+    }
+})
+
+router.post('/ngo/login', passport.authenticate('local', { failureFlash: true, failureRedirect: `/ngo/login` }), (req, res) => {
+    req.flash('success', 'Welcome Back!');
+    const entity = "ngo";
     let url = '';
     const username = req.body.username;
     if(entity === "volunteer") {

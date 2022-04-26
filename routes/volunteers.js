@@ -4,9 +4,17 @@ const { isLoggedIn } = require('../middleware');
 
 const catchAsync = require('../utilities/catchAsync');
 const Volunteer = require("../models/volunteer")
+const Opportunity = require("../models/opportunity");
 
 router.get('/', isLoggedIn, catchAsync(async (req, res) => {
-    res.render('volunteers/home')
+    const opportunities = await Opportunity.find({});
+    // console.log(opportunity);
+    res.render('volunteers/home', { opportunities })
+}))
+
+router.get('/opportunity/:id', isLoggedIn, catchAsync(async (req, res) => {
+    const opportunity = await Opportunity.findById(req.params.id);
+    res.render()
 }))
 
 router.get('/v', (req, res) => {

@@ -17,7 +17,13 @@ const NgoSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    opportunities: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Opportunity'
+        }
+    ]
 });
 
 module.exports = mongoose.model('Ngo', NgoSchema)

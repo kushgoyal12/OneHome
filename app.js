@@ -16,7 +16,7 @@ const volunteerRoutes = require('./routes/volunteers');
 const ngoRoutes = require('./routes/ngos');
 const opportunityRoutes = require('./routes/opportunities');
 
-mongoose.connect('mongodb://localhost:27017/one-home', {
+mongoose.connect('mongodb+srv://Zack:4EnYfk6oIg42nZjJ@cluster0.u54mw.mongodb.net/OneHome?retryWrites=true&w=majority', {
     useNewUrlParser: true, 
     useUnifiedTopology: true
     // useCreateIndex: true,
@@ -75,16 +75,16 @@ app.get('/home', (req, res) => {
     res.render('home')
 })
 
-app.all('*', (req, res, next) => {
-    next(new ExpressError('Page not Found', 404))
-})
+// app.all('*', (req, res, next) => {
+//     next(new ExpressError('Page not Found', 404))
+// })
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if(!err.message) {
         err.message = 'Something went wrong'; 
     }
-    res.status(statusCode).render('error', { err })
+    res.status(statusCode).render('page')
 })
 
 app.listen(3000, () => {

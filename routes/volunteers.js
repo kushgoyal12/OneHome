@@ -13,8 +13,9 @@ router.get('/', isLoggedIn, catchAsync(async (req, res) => {
 }))
 
 router.get('/opportunity/:id', isLoggedIn, catchAsync(async (req, res) => {
+    console.log("Hi")
     const opportunity = await Opportunity.findById(req.params.id);
-    res.render()
+    res.render("volunteers/addOpportunity")
 }))
 
 router.get('/v', (req, res) => {
